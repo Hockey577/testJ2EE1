@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+    <select id="checkLogin" resultType="StudentEntity">
+        SELECT * FROM t_student
+        WHERE sid = #{sid}
+    </select>
+
+    <select id="queryByStu" resultType="StudentEntity">
+        SELECT * FROM t_student
+        WHERE sid IN
+        (SELECT other_id FROM t_tel WHERE sid = #{sid});
+    </select>
+
+    <select id="queryByCom" resultType="CompanyEntity">
+        SELECT * FROM t_company
+        WHERE cid IN
+        (SELECT other_id FROM t_tel WHERE sid = #{sid});
+    </select>
+    
+    <update id="saveCode">
+        UPDATE t_student
+        SET scode = #{scode},sphone = #{sphone}
+        WHERE sid = #{sid}
+    </update>
+
+    <select id="checkCode" resultType="StudentEntity">
+        SELECT * FROM t_student
+        WHERE sphone = #{sphone}
+    </select>
+
+    <update id="modifyPwd">
+        UPDATE t_student
+        SET spassword = #{spassword}
+        WHERE sphone= #{sphone}
+    </update>
+
+    <update id="saveToken">
+        UPDATE t_student
+        SET stoken = #{stoken}
+        WHERE sid = #{sid}
+    </update>
+
+    <select id="queryAll" resultType="StudentEntity">
+        SELECT * FROM t_student
+    </select>
+</mapper>

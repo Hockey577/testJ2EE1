@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ExamDao">
+    <select id="queryById" resultType="ExamEntity">
+        SELECT * FROM t_exam
+        WHERE sid = #{sid}
+    </select>
+
+    <insert id="addRecord">
+        INSERT INTO t_exam(sid,state,school,sub1,gra1,sub2,gra2,sub3,gra3,sub4,gra4)
+        VALUES (#{sid},#{state},#{school},#{sub1},#{gra1},#{sub2},#{gra2},#{sub3},#{gra3},#{sub4},#{gra4});
+    </insert>
+
+    <update id="modifyRecord">
+        update t_exam SET
+        state = #{state},school = #{school},sub1=#{sub1},gra1 = #{gra1},
+        sub2= #{sub2},gra2=#{gra2},sub3=#{sub3},gra3=#{gra3},sub4=#{sub4},gra4=#{gra4}
+        WHERE sid = #{sid}
+    </update>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DailyDao">
+    <insert id="addRecord" >
+        INSERT INTO t_daily(sid,sdate,work_done,work_undo,work_need,remark)
+        VALUES(#{sid},#{sdate},#{workDone},#{workUndo},#{workNeed},#{remark})
+    </insert>
+
+    <select id="queryById" resultType="DailyEntity">
+        SELECT * FROM t_daily
+        WHERE sid = #{sid}
+    </select>
+</mapper>
